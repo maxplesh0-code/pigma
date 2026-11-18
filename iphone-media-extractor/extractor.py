@@ -2,6 +2,7 @@
 import os
 import posixpath
 import shutil
+import time
 from dataclasses import dataclass
 
 PHOTO_EXT = {".jpg", ".jpeg", ".heic", ".heif", ".png", ".gif", ".dng", ".tif", ".tiff", ".webp", ".bmp"}
@@ -64,15 +65,20 @@ async def scan(afc, on_found=None, cancelled=lambda: False):
     return items
 
 
-def target_for(item, dest, by_month, taken):
-    """Pick the local path. Returns (path, already_copied)."""
-    import time
+MONTHS = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"]
 
-    if by_month:
-        sub = time.strftime("%Y-%m", time.localtime(item.mtime))
-    else:
-        sub = posixpath.basename(posixpath.dirname(item.path))
-    folder = os.path.join(dest, sub)
+
+def folder_for(item):
+    """Photos/2026/03 March, or Videos/2026/03 March."""
+    t = time.localtime(item.mtime)
+    top = "Photos" if item.kind == "photo" else "Videos"
+    return os.path.join(top, str(t.tm_year), f"{t.tm_mon:02d} {MONTHS[t.tm_mon - 1]}")
+
+
+def target_for(item, dest, taken):
+    """Pick the local path. Returns (path, already_copied)."""
+    folder = os.path.join(dest, folder_for(item))
     stem, ext = os.path.splitext(posixpath.basename(item.path))
     n = 0
     while True:
@@ -99,7 +105,7 @@ def free_space(dest):
     return shutil.disk_usage(probe or ".").free
 
 
-async def copy_all(afc, items, dest, by_month=True, on_progress=None, cancelled=lambda: False):
+async def copy_all(afc, items, dest, on_progress=None, cancelled=lambda: False):
     """Copy items into dest. Skips files already there. Returns a result dict."""
     res = {"copied": 0, "skipped": 0, "failed": [], "bytes": 0}
     total_bytes = sum(i.size for i in items)
@@ -116,7 +122,7 @@ async def copy_all(afc, items, dest, by_month=True, on_progress=None, cancelled=
             raise Cancelled()
         name = posixpath.basename(item.path)
         report(idx, name)
-        path, exists = target_for(item, dest, by_month, taken)
+        path, exists = target_for(item, dest, taken)
         if exists:
             res["skipped"] += 1
             done_bytes += item.size

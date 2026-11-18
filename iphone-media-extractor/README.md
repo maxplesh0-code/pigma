@@ -7,7 +7,7 @@ Plug in an iPhone. Pick a folder. Copy every photo and video.
 1. Open the app
 2. Plug in the iPhone with a USB cable
 3. Unlock it and tap **Trust**
-4. Pick a folder with **Browse**
+4. Pick a folder with **Browse** (your Desktop works)
 5. Press **Extract all**
 
 Run it again later and it only copies new files.
@@ -16,7 +16,7 @@ Run it again later and it only copies new files.
 
 Download the build from the GitHub Actions run of this branch (Artifacts section):
 
-- `iPhone-Media-Extractor-Windows` is a single `.exe`
+- `iPhone-Media-Extractor-Windows` is a Setup installer for Windows 11
 - `iPhone-Media-Extractor-macOS` is a zipped `.app`
 
 Windows also needs the free **Apple Devices** app (or iTunes) from the Microsoft Store. It carries the USB driver.
@@ -36,7 +36,18 @@ Preview the screens in a browser: open `ui/index.html?demo=ready`
 - Reads the camera roll (`/DCIM`) over USB
 - Copies photos and videos as the original files, no conversion
 - Keeps the original file dates
-- Sorts into `2026-03` style month folders, or keeps the phone folders
+- Sorts into `Photos` and `Videos`, then year, then month:
+
+```
+My folder/
+  Photos/
+    2026/
+      03 March/
+      04 April/
+  Videos/
+    2026/
+      03 March/
+```
 - Skips files already in the folder
 - Checks free disk space before it starts
 - Never deletes or changes anything on the phone

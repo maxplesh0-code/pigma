@@ -55,6 +55,7 @@
   .path { flex: 1; min-width: 0; font-weight: 550; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: rtl; text-align: left; }
   .free { font-size: 13px; color: var(--mute); margin-top: 8px; }
   .free.bad { color: var(--red); font-weight: 600; }
+  .note { font-size: 13px; color: var(--mute); margin-top: 16px; padding: 0 4px; }
   .check { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding: 0 4px; cursor: pointer; }
   .check input { width: 18px; height: 18px; accent-color: var(--blue); margin: 0; }
   .grow { flex: 1; }
@@ -98,10 +99,7 @@
       <div class="free" id="r-free"></div>
     </div>
 
-    <label class="check">
-      <input type="checkbox" id="r-month" checked>
-      <span>Sort into folders by month</span>
-    </label>
+    <div class="note">Saved as <b>Photos</b> and <b>Videos</b>, then year, then month.</div>
 
     <div class="grow"></div>
     <button class="primary" id="b-start">Extract all</button>
@@ -193,7 +191,6 @@ function render(s) {
       ? `Not enough space. ${size(s.free)} free, ${size(s.bytes)} needed.`
       : `${size(s.free)} free`;
     $("r-free").classList.toggle("bad", low);
-    $("r-month").checked = s.by_month;
     $("b-start").disabled = !total || low;
   } else if (s.phase === "extracting") {
     show("s-run");
@@ -229,7 +226,6 @@ async function tick() {
 function boot() {
   api = window.pywebview.api;
   $("b-browse").onclick = async () => render(await api.browse());
-  $("r-month").onchange = e => api.set_by_month(e.target.checked);
   $("b-start").onclick = () => api.start();
   $("b-cancel").onclick = () => api.cancel();
   $("b-open").onclick = () => api.open_folder();
@@ -242,12 +238,12 @@ function boot() {
 const demo = new URLSearchParams(location.search).get("demo");
 if (demo) {
   const st = { phase: demo, device: "My iPhone", photos: 3412, videos: 218, bytes: 51.7e9,
-    dest: "C:\\Users\\Me\\Pictures\\iPhone Media", by_month: true, free: 212e9, index: 1203,
+    dest: "C:\\Users\\Me\\Pictures\\iPhone Media", free: 212e9, index: 1203,
     total: 3630, done_bytes: 17.2e9, total_bytes: 51.7e9, file: "IMG_4821.HEIC", speed: 38e6,
     result: { copied: 3618, skipped: 12, failed: 0 },
     message: "The iPhone was disconnected. Plug it back in. Copied files are kept." };
   const noop = async () => {};
-  window.pywebview = { api: { get_state: async () => st, browse: async () => st, set_by_month: noop,
+  window.pywebview = { api: { get_state: async () => st, browse: async () => st,
     start: noop, cancel: noop, open_folder: noop, again: noop } };
   boot();
 } else if (window.pywebview) {

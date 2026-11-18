@@ -29,7 +29,6 @@ class App:
             "videos": 0,
             "bytes": 0,
             "dest": DEFAULT_DEST,
-            "by_month": True,
             "free": extractor.free_space(DEFAULT_DEST),
             "index": 0,
             "total": 0,
@@ -56,9 +55,6 @@ class App:
             path = picked[0] if isinstance(picked, (list, tuple)) else picked
             self._set(dest=path, free=extractor.free_space(path))
         return self.get_state()
-
-    def set_by_month(self, value):
-        self._set(by_month=bool(value))
 
     def start(self):
         self._cancel.clear()
@@ -201,7 +197,7 @@ class App:
 
             try:
                 result = await extractor.copy_all(
-                    afc, items, dest, by_month=self._state["by_month"],
+                    afc, items, dest,
                     on_progress=progress, cancelled=self._cancel.is_set,
                 )
             except extractor.Cancelled:

@@ -15,7 +15,7 @@ jobs:
         include:
           - os: windows-latest
             name: Windows
-            flags: --onefile
+            flags: ""
           - os: macos-latest
             name: macOS
             flags: ""
@@ -38,6 +38,15 @@ jobs:
           --collect-submodules pymobiledevice3
           --collect-data pymobiledevice3
           app.py
+      - name: Build Windows installer
+        if: runner.os == 'Windows'
+        run: |
+          ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
+          if [ ! -f "$ISCC" ]; then choco install innosetup -y --no-progress; fi
+          "$ISCC" installer.iss
+          rm -rf dist
+          mv installer dist
+
       - if: runner.os == 'macOS'
         run: cd dist && ditto -c -k --keepParent "iPhone Media Extractor.app" "iPhone Media Extractor.zip" && rm -rf "iPhone Media Extractor.app" "iPhone Media Extractor"
       - uses: actions/upload-artifact@v4

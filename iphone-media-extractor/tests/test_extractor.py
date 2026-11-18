@@ -58,27 +58,22 @@ def test_scan_finds_media_only():
     assert [i.kind for i in items] == ["photo", "video", "photo", "photo"]
 
 
-def test_copy_by_month_then_resume():
+def test_copy_sorts_by_kind_year_month_then_resumes():
     afc = FakeAfc(FILES)
     items = run(extractor.scan(afc))
     with tempfile.TemporaryDirectory() as d:
         r = run(extractor.copy_all(afc, items, d))
         assert (r["copied"], r["skipped"], r["failed"]) == (4, 0, [])
-        assert sorted(os.listdir(d)) == ["2026-03", "2026-04"]
-        assert sorted(os.listdir(os.path.join(d, "2026-03"))) == ["IMG_0001.HEIC", "IMG_0001_1.HEIC", "IMG_0002.MOV"]
-        p = os.path.join(d, "2026-03", "IMG_0001_1.HEIC")
+        assert sorted(os.listdir(d)) == ["Photos", "Videos"]
+        assert sorted(os.listdir(os.path.join(d, "Photos", "2026"))) == ["03 March", "04 April"]
+        assert os.listdir(os.path.join(d, "Videos", "2026")) == ["03 March"]
+        assert sorted(os.listdir(os.path.join(d, "Photos", "2026", "03 March"))) == ["IMG_0001.HEIC", "IMG_0001_1.HEIC"]
+        assert os.listdir(os.path.join(d, "Videos", "2026", "03 March")) == ["IMG_0002.MOV"]
+        p = os.path.join(d, "Photos", "2026", "03 March", "IMG_0001_1.HEIC")
         assert open(p, "rb").read() == b"c" * 20
         assert os.path.getmtime(p) == T1.timestamp()
         r = run(extractor.copy_all(afc, items, d))  # second run copies nothing
         assert (r["copied"], r["skipped"]) == (0, 4)
-
-
-def test_copy_keeps_phone_folders():
-    afc = FakeAfc(FILES)
-    items = run(extractor.scan(afc))
-    with tempfile.TemporaryDirectory() as d:
-        run(extractor.copy_all(afc, items, d, by_month=False))
-        assert sorted(os.listdir(d)) == ["100APPLE", "101APPLE"]
 
 
 def test_bad_file_is_skipped_and_cancel_cleans_up():
