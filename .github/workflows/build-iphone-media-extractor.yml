@@ -1,0 +1,55 @@
+name: Build iPhone Media Extractor
+
+on:
+  push:
+    paths:
+      - "iphone-media-extractor/**"
+      - ".github/workflows/build-iphone-media-extractor.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            name: Windows
+            flags: ""
+          - os: macos-latest
+            name: macOS
+            flags: ""
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: iphone-media-extractor
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt pyinstaller pytest
+      - run: python -m pytest -q tests
+      - run: >
+          pyinstaller --noconfirm --windowed ${{ matrix.flags }}
+          --name "iPhone Media Extractor"
+          --add-data "ui:ui"
+          --collect-submodules pymobiledevice3
+          --collect-data pymobiledevice3
+          app.py
+      - name: Build Windows installer
+        if: runner.os == 'Windows'
+        run: |
+          ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
+          if [ ! -f "$ISCC" ]; then choco install innosetup -y --no-progress; fi
+          "$ISCC" installer.iss
+          rm -rf dist
+          mv installer dist
+
+      - if: runner.os == 'macOS'
+        run: cd dist && ditto -c -k --keepParent "iPhone Media Extractor.app" "iPhone Media Extractor.zip" && rm -rf "iPhone Media Extractor.app" "iPhone Media Extractor"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iPhone-Media-Extractor-${{ matrix.name }}
+          path: iphone-media-extractor/dist/

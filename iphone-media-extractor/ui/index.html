@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iPhone Media Extractor</title>
+<style>
+  :root {
+    --bg: #F5F5F7; --card: #FFFFFF; --ink: #1D1D1F; --mute: #6E6E73;
+    --line: #E3E3E8; --blue: #0A84FF; --blue-d: #0070E0; --red: #D70015; --green: #1FA94B;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 15px/1.45 -apple-system, "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+    user-select: none; cursor: default; overflow: hidden;
+  }
+  main { height: 100%; display: flex; flex-direction: column; padding: 28px; }
+  section { display: none; flex: 1; flex-direction: column; min-height: 0; }
+  section.on { display: flex; }
+  .center { align-items: center; justify-content: center; text-align: center; }
+  h1 { font-size: 24px; line-height: 1.2; margin: 0 0 8px; font-weight: 650; letter-spacing: -.01em; }
+  p { margin: 0; color: var(--mute); }
+  .hint { max-width: 300px; }
+
+  button {
+    font: inherit; font-weight: 600; border: 0; border-radius: 999px;
+    padding: 0 22px; height: 44px; cursor: pointer; transition: background .15s, transform .05s;
+  }
+  button:active { transform: scale(.98); }
+  button:focus-visible { outline: 3px solid rgba(10,132,255,.4); outline-offset: 2px; }
+  .primary { background: var(--blue); color: #fff; height: 54px; font-size: 17px; width: 100%; }
+  .primary:hover { background: var(--blue-d); }
+  .primary:disabled { background: #C7C7CC; cursor: default; transform: none; }
+  .ghost { background: #E8E8ED; color: var(--ink); }
+  .ghost:hover { background: #DCDCE2; }
+  .wide { width: 100%; height: 50px; }
+
+  .phone { width: 84px; height: 164px; border: 5px solid var(--ink); border-radius: 22px; position: relative; margin-bottom: 32px; }
+  .phone::before { content: ""; position: absolute; top: 8px; left: 50%; width: 26px; height: 7px; margin-left: -13px; border-radius: 9px; background: var(--ink); }
+  .phone.wait { animation: breathe 2.4s ease-in-out infinite; }
+  @keyframes breathe { 50% { opacity: .35; } }
+  .spinner { width: 34px; height: 34px; border-radius: 50%; border: 4px solid var(--line); border-top-color: var(--blue); animation: spin .8s linear infinite; margin-bottom: 24px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .device { display: flex; align-items: center; gap: 8px; color: var(--mute); font-size: 14px; margin-bottom: 20px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .big { font-size: 44px; font-weight: 700; line-height: 1.05; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .sub { margin-top: 8px; font-size: 15px; }
+
+  .card { background: var(--card); border-radius: 18px; padding: 16px; margin-top: 24px; }
+  .label { font-size: 13px; color: var(--mute); margin-bottom: 6px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .path { flex: 1; min-width: 0; font-weight: 550; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: rtl; text-align: left; }
+  .free { font-size: 13px; color: var(--mute); margin-top: 8px; }
+  .free.bad { color: var(--red); font-weight: 600; }
+  .note { font-size: 13px; color: var(--mute); margin-top: 16px; padding: 0 4px; }
+  .check { display: flex; align-items: center; gap: 10px; margin-top: 16px; padding: 0 4px; cursor: pointer; }
+  .check input { width: 18px; height: 18px; accent-color: var(--blue); margin: 0; }
+  .grow { flex: 1; }
+
+  .bar { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 28px 0 12px; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--blue); border-radius: 999px; transition: width .3s; }
+  .meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--mute); font-variant-numeric: tabular-nums; }
+  .file { font-size: 13px; color: var(--mute); margin-top: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .tick { width: 72px; height: 72px; border-radius: 50%; background: var(--green); margin-bottom: 24px; position: relative; }
+  .tick::after { content: ""; position: absolute; left: 26px; top: 16px; width: 16px; height: 30px; border: solid #fff; border-width: 0 5px 5px 0; transform: rotate(45deg); border-radius: 2px; }
+  .stack { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+</style>
+</head>
+<body>
+<main>
+
+  <section id="s-wait" class="center">
+    <div class="phone wait" id="w-phone"></div>
+    <h1 id="w-title">Connect your iPhone</h1>
+    <p class="hint" id="w-text">Plug it in with a USB cable.</p>
+  </section>
+
+  <section id="s-scan" class="center">
+    <div class="spinner"></div>
+    <h1>Scanning</h1>
+    <p><span id="sc-count">0</span> photos and videos found</p>
+  </section>
+
+  <section id="s-ready">
+    <div class="device"><span class="dot"></span><span id="r-device">iPhone</span></div>
+    <div class="big" id="r-total">0</div>
+    <p class="sub" id="r-detail"></p>
+
+    <div class="card">
+      <div class="label">Save to</div>
+      <div class="row">
+        <div class="path" id="r-path"></div>
+        <button class="ghost" id="b-browse">Browse</button>
+      </div>
+      <div class="free" id="r-free"></div>
+    </div>
+
+    <div class="note">Saved as <b>Photos</b> and <b>Videos</b>, then year, then month.</div>
+
+    <div class="grow"></div>
+    <button class="primary" id="b-start">Extract all</button>
+  </section>
+
+  <section id="s-run">
+    <div class="device"><span class="dot"></span><span id="x-device">iPhone</span></div>
+    <div class="big"><span id="x-pct">0</span>%</div>
+    <p class="sub"><span id="x-index">0</span> of <span id="x-total">0</span> files</p>
+    <div class="bar"><i id="x-bar"></i></div>
+    <div class="meta"><span id="x-bytes"></span><span id="x-eta"></span></div>
+    <div class="file" id="x-file"></div>
+    <div class="grow"></div>
+    <p style="text-align:center;font-size:13px;margin-bottom:14px">Keep your iPhone plugged in and unlocked.</p>
+    <button class="ghost wide" id="b-cancel">Cancel</button>
+  </section>
+
+  <section id="s-done" class="center">
+    <div class="tick"></div>
+    <h1 id="d-title">All saved</h1>
+    <p class="hint" id="d-text"></p>
+    <div class="stack" style="margin-top:32px">
+      <button class="primary" id="b-open">Open folder</button>
+      <button class="ghost wide" id="b-again">Done</button>
+    </div>
+  </section>
+
+  <section id="s-error" class="center">
+    <div class="phone"></div>
+    <h1>Something stopped</h1>
+    <p class="hint" id="e-text"></p>
+    <div class="stack" style="margin-top:32px">
+      <button class="ghost wide" id="b-retry">Try again</button>
+    </div>
+  </section>
+
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const num = n => Number(n).toLocaleString("en-US");
+const plural = (n, w) => `${num(n)} ${w}${n === 1 ? "" : "s"}`;
+function size(b) {
+  const u = ["B", "KB", "MB", "GB", "TB"]; let i = 0;
+  while (b >= 1024 && i < u.length - 1) { b /= 1024; i++; }
+  return `${b.toFixed(i > 2 ? 1 : 0)} ${u[i]}`;
+}
+function eta(s) {
+  if (!isFinite(s) || s <= 0) return "";
+  if (s < 60) return "Less than a minute left";
+  const m = Math.round(s / 60);
+  if (m < 60) return `About ${m} min left`;
+  return `About ${Math.floor(m / 60)} h ${m % 60} min left`;
+}
+
+const WAIT = {
+  searching:    ["Connect your iPhone", "Plug it in with a USB cable."],
+  disconnected: ["Connect your iPhone", "Plug it in with a USB cable."],
+  locked:       ["Unlock your iPhone", "Enter your passcode on the phone."],
+  trust:        ["Tap Trust on your iPhone", "A message is on the phone screen. Tap Trust, then enter your passcode."],
+  denied:       ["Access was denied", "Unplug the iPhone, plug it back in, then tap Trust."],
+  no_driver:    ["Apple driver needed", "Install the free Apple Devices app from the Microsoft Store, then reopen this app."],
+};
+
+function show(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.toggle("on", s.id === id));
+}
+
+function render(s) {
+  if (WAIT[s.phase]) {
+    show("s-wait");
+    $("w-title").textContent = WAIT[s.phase][0];
+    $("w-text").textContent = WAIT[s.phase][1];
+    $("w-phone").classList.toggle("wait", s.phase === "searching" || s.phase === "disconnected");
+  } else if (s.phase === "scanning") {
+    show("s-scan");
+    $("sc-count").textContent = num(s.photos + s.videos);
+  } else if (s.phase === "ready") {
+    show("s-ready");
+    const total = s.photos + s.videos;
+    $("r-device").textContent = s.device;
+    $("r-total").textContent = plural(total, "file");
+    $("r-detail").textContent = total
+      ? `${plural(s.photos, "photo")}, ${plural(s.videos, "video")}, ${size(s.bytes)}`
+      : "No photos or videos on this iPhone.";
+    $("r-path").textContent = "\u200E" + s.dest;
+    $("r-path").title = s.dest;
+    const low = s.bytes > s.free;
+    $("r-free").textContent = low
+      ? `Not enough space. ${size(s.free)} free, ${size(s.bytes)} needed.`
+      : `${size(s.free)} free`;
+    $("r-free").classList.toggle("bad", low);
+    $("b-start").disabled = !total || low;
+  } else if (s.phase === "extracting") {
+    show("s-run");
+    const pct = s.total_bytes ? Math.floor(s.done_bytes / s.total_bytes * 100) : 0;
+    $("x-device").textContent = s.device;
+    $("x-pct").textContent = pct;
+    $("x-index").textContent = num(Math.min(s.index + 1, s.total));
+    $("x-total").textContent = num(s.total);
+    $("x-bar").style.width = pct + "%";
+    $("x-bytes").textContent = `${size(s.done_bytes)} of ${size(s.total_bytes)}`;
+    $("x-eta").textContent = s.speed ? eta((s.total_bytes - s.done_bytes) / s.speed) : "";
+    $("x-file").textContent = s.file;
+  } else if (s.phase === "done") {
+    show("s-done");
+    const r = s.result || { copied: 0, skipped: 0, failed: 0 };
+    $("d-title").textContent = r.copied ? `${plural(r.copied, "file")} saved` : "Already up to date";
+    const lines = [];
+    if (r.skipped) lines.push(`${num(r.skipped)} already in the folder, skipped.`);
+    if (r.failed) lines.push(`${num(r.failed)} could not be copied.`);
+    if (!lines.length) lines.push("You can unplug your iPhone.");
+    $("d-text").textContent = lines.join(" ");
+  } else if (s.phase === "error") {
+    show("s-error");
+    $("e-text").textContent = s.message;
+  }
+}
+
+let api;
+async function tick() {
+  try { render(await api.get_state()); } catch (e) {}
+  setTimeout(tick, 400);
+}
+function boot() {
+  api = window.pywebview.api;
+  $("b-browse").onclick = async () => render(await api.browse());
+  $("b-start").onclick = () => api.start();
+  $("b-cancel").onclick = () => api.cancel();
+  $("b-open").onclick = () => api.open_folder();
+  $("b-again").onclick = () => api.again();
+  $("b-retry").onclick = () => api.again();
+  tick();
+}
+
+// Preview in a normal browser: index.html?demo=ready
+const demo = new URLSearchParams(location.search).get("demo");
+if (demo) {
+  const st = { phase: demo, device: "My iPhone", photos: 3412, videos: 218, bytes: 51.7e9,
+    dest: "C:\\Users\\Me\\Pictures\\iPhone Media", free: 212e9, index: 1203,
+    total: 3630, done_bytes: 17.2e9, total_bytes: 51.7e9, file: "IMG_4821.HEIC", speed: 38e6,
+    result: { copied: 3618, skipped: 12, failed: 0 },
+    message: "The iPhone was disconnected. Plug it back in. Copied files are kept." };
+  const noop = async () => {};
+  window.pywebview = { api: { get_state: async () => st, browse: async () => st,
+    start: noop, cancel: noop, open_folder: noop, again: noop } };
+  boot();
+} else if (window.pywebview) {
+  boot();
+} else {
+  window.addEventListener("pywebviewready", boot);
+}
+</script>
+</body>
+</html>
