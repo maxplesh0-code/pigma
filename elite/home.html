@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>elite logistics australia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1C3147; --navy2:#122235; --blue:#03ADEF; --lime:#C0D145; --orange:#F5851F;
+  --paper:#F8F9FF; --line:#DDE3EC; --ink:#10202F; --mute:#5C6B7C; --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#2b2b2b;display:flex;flex-direction:column;align-items:center;gap:48px;padding:48px 0;
+     font-family:'Inter',Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+.screen{position:relative;width:1920px;flex:0 0 auto;background:var(--white);overflow:hidden}
+.sh{position:absolute;z-index:1}
+.t{position:absolute;z-index:3;margin:0}
+
+/* shapes */
+.navy{background:var(--navy)}
+.navy2{background:var(--navy2)}
+.paper{background:var(--paper)}
+.white{background:var(--white)}
+.blue{background:var(--blue)}
+.lime{background:var(--lime)}
+.orange{background:var(--orange)}
+.hair{background:var(--line)}
+.hairw{background:rgba(255,255,255,.16)}
+.card{background:var(--white);border:1px solid var(--line)}
+.cardp{background:var(--paper);border:1px solid var(--line)}
+.glass{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px)}
+.glassb{background:rgba(3,173,239,.10);border:1px solid rgba(3,173,239,.35)}
+.r8{border-radius:8px}.r14{border-radius:14px}.r20{border-radius:20px}.rfull{border-radius:999px}
+.photo{background:linear-gradient(140deg,#24415c 0%,#1C3147 45%,#0d1b29 100%)}
+.photo2{background:linear-gradient(140deg,#2f5c78 0%,#1d4a66 50%,#10293a 100%)}
+.photo3{background:linear-gradient(140deg,#3a4a5a 0%,#223445 55%,#111d28 100%)}
+.grid{background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:60px 60px}
+.scan{background:linear-gradient(90deg,rgba(3,173,239,.55),rgba(3,173,239,0))}
+
+/* text */
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);font-weight:500}
+.eyebrow-d{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.h1{font-family:'Space Grotesk',sans-serif;font-size:92px;line-height:.98;letter-spacing:-.03em;font-weight:700;color:var(--ink)}
+.h1w{font-family:'Space Grotesk',sans-serif;font-size:92px;line-height:.98;letter-spacing:-.03em;font-weight:700;color:#fff}
+.h2{font-family:'Space Grotesk',sans-serif;font-size:62px;line-height:1.02;letter-spacing:-.025em;font-weight:700;color:var(--ink)}
+.h2w{font-family:'Space Grotesk',sans-serif;font-size:62px;line-height:1.02;letter-spacing:-.025em;font-weight:700;color:#fff}
+.h3{font-family:'Space Grotesk',sans-serif;font-size:34px;line-height:1.12;letter-spacing:-.015em;font-weight:600;color:var(--ink)}
+.h3w{font-family:'Space Grotesk',sans-serif;font-size:34px;line-height:1.12;letter-spacing:-.015em;font-weight:600;color:#fff}
+.h4{font-family:'Space Grotesk',sans-serif;font-size:24px;line-height:1.2;font-weight:600;color:var(--ink)}
+.h4w{font-family:'Space Grotesk',sans-serif;font-size:24px;line-height:1.2;font-weight:600;color:#fff}
+.lead{font-size:26px;line-height:1.5;color:var(--mute);font-weight:400}
+.leadw{font-size:26px;line-height:1.5;color:rgba(255,255,255,.78);font-weight:400}
+.body{font-size:20px;line-height:1.6;color:var(--mute)}
+.bodyw{font-size:20px;line-height:1.6;color:rgba(255,255,255,.72)}
+.small{font-size:17px;line-height:1.55;color:var(--mute)}
+.smallw{font-size:17px;line-height:1.55;color:rgba(255,255,255,.62)}
+.stat{font-family:'Space Grotesk',sans-serif;font-size:82px;line-height:.9;font-weight:700;color:var(--blue);letter-spacing:-.03em}
+.statn{font-family:'Space Grotesk',sans-serif;font-size:82px;line-height:.9;font-weight:700;color:var(--navy);letter-spacing:-.03em}
+.statl{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.statlw{font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:500}
+.mono{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--mute)}
+.monow{font-family:'JetBrains Mono',monospace;font-size:15px;color:rgba(255,255,255,.65)}
+.monob{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--blue)}
+.quote{font-family:'Space Grotesk',sans-serif;font-size:30px;line-height:1.3;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.quotew{font-family:'Space Grotesk',sans-serif;font-size:30px;line-height:1.3;font-weight:600;color:#fff;letter-spacing:-.01em}
+.num{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--blue);letter-spacing:.1em}
+.btn-t{font-size:19px;font-weight:600;text-align:center;color:#fff;font-family:'Inter',sans-serif}
+.btn-td{font-size:19px;font-weight:600;text-align:center;color:var(--navy);font-family:'Inter',sans-serif}
+.nav-t{font-size:17px;font-weight:500;color:rgba(255,255,255,.88)}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:700;color:#fff;letter-spacing:-.02em}
+.logo-d{font-family:'Space Grotesk',sans-serif;font-size:25px;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+.foot{font-size:16px;line-height:1.9;color:rgba(255,255,255,.6)}
+.footh{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:500}
+
+.screen{height:8010px}
+</style>
+</head>
+<body>
+  <section class="screen">
+    <div class="sh navy" style="left:0px;top:0px;width:1920px;height:96px;"></div>
+    <p class="t logo" style="left:120px;top:34px;width:420px;">elite <span style="color:#03ADEF">logistics</span> australia</p>
+    <p class="t nav-t" style="left:720px;top:38px;width:140px;"><span style="color:#03ADEF">Services</span></p>
+    <p class="t nav-t" style="left:852px;top:38px;width:140px;">Industries</p>
+    <p class="t nav-t" style="left:984px;top:38px;width:140px;">Technology</p>
+    <p class="t nav-t" style="left:1116px;top:38px;width:140px;">About</p>
+    <p class="t nav-t" style="left:1248px;top:38px;width:140px;">News</p>
+    <p class="t nav-t" style="left:1380px;top:38px;width:140px;">Contact</p>
+    <div class="sh rfull" style="left:1560px;top:25px;width:120px;height:46px;background:transparent;border:1px solid rgba(255,255,255,.35)"></div>
+    <p class="t btn-t" style="left:1560px;top:36px;width:120px;font-size:16px">Track</p>
+    <div class="sh rfull blue" style="left:1696px;top:25px;width:104px;height:46px;"></div>
+    <p class="t btn-t" style="left:1696px;top:36px;width:104px;font-size:16px">Login</p>
+    <div class="sh paper" style="left:0px;top:96px;width:1920px;height:860px;"></div>
+    <div class="sh photo" style="left:1060px;top:96px;width:860px;height:860px;"></div>
+    <div class="sh grid" style="left:1060px;top:96px;width:860px;height:860px;"></div>
+    <div class="sh blue" style="left:1060px;top:96px;width:6px;height:860px;"></div>
+    <p class="t eyebrow" style="left:120px;top:204px;width:760px;">REAL-TIME VISIBILITY &nbsp;·&nbsp; BUSINESS INTELLIGENCE &nbsp;·&nbsp; AUSTRALIA WIDE</p>
+    <h1 class="t h1" style="left:120px;top:252px;width:870px;">Freight, transport and warehousing. With data you can see.</h1>
+    <p class="t lead" style="left:120px;top:636px;width:820px;">Our own warehouses, our own drivers, and a multi-carrier platform running behind both. You get people who answer the phone, and a live view of every order, every delivery and every dollar of freight spend.</p>
+    <div class="sh rfull blue" style="left:120px;top:806px;width:290px;height:62px;"></div>
+    <p class="t btn-t" style="left:120px;top:824.0px;width:290px;">Book a discovery call</p>
+    <div class="sh rfull" style="left:434px;top:806px;width:250px;height:62px;background:transparent;border:1px solid #C7D0DB"></div>
+    <p class="t btn-td" style="left:434px;top:824.0px;width:250px;">See the platform</p>
+    <div class="sh glass r14" style="left:1180px;top:560px;width:620px;height:250px;"></div>
+    <p class="t statlw" style="left:1216px;top:592px;width:240px;">LIVE NETWORK</p>
+    <p class="t h3w" style="left:1216px;top:626px;width:200px;">98.2%</p>
+    <p class="t monow" style="left:1216px;top:676px;width:260px;">DIFOT, last 30 days</p>
+    <p class="t h3w" style="left:1500px;top:626px;width:200px;">24h</p>
+    <p class="t monow" style="left:1500px;top:676px;width:280px;">Order to despatch</p>
+    <div class="sh r8" style="left:1216px;top:732px;width:548px;height:6px;background:rgba(255,255,255,.18)"></div>
+    <div class="sh r8 blue" style="left:1216px;top:732px;width:520px;height:6px;"></div>
+    <div class="sh white" style="left:0px;top:956px;width:1920px;height:250px;"></div>
+    <div class="sh hair" style="left:120px;top:956px;width:1680px;height:1px;"></div>
+    <p class="t stat" style="left:120px;top:1020px;width:380px;">98%</p>
+    <p class="t statl" style="left:120px;top:1124px;width:360px;">On-time delivery</p>
+    <p class="t stat" style="left:540px;top:1020px;width:380px;">100%</p>
+    <p class="t statl" style="left:540px;top:1124px;width:360px;">Scanning and POD compliance</p>
+    <p class="t stat" style="left:960px;top:1020px;width:380px;">20%</p>
+    <p class="t statl" style="left:960px;top:1124px;width:360px;">Faster transit times</p>
+    <p class="t stat" style="left:1380px;top:1020px;width:380px;">30-40%</p>
+    <p class="t statl" style="left:1380px;top:1124px;width:360px;">Lift in picking efficiency</p>
+    <div class="sh hair" style="left:500px;top:1012px;width:1px;height:150px;"></div>
+    <div class="sh hair" style="left:920px;top:1012px;width:1px;height:150px;"></div>
+    <div class="sh hair" style="left:1340px;top:1012px;width:1px;height:150px;"></div>
+    <p class="t mono" style="left:120px;top:1228px;width:1100px;">Measured in elite&rsquo;s published logistics management reporting.</p>
+    <div class="sh paper" style="left:0px;top:1296px;width:1920px;height:900px;"></div>
+    <p class="t eyebrow-d" style="left:120px;top:1384px;width:600px;">01 &nbsp;/&nbsp; WHAT WE DO</p>
+    <h2 class="t h2" style="left:120px;top:1424px;width:1100px;">Three services. One platform underneath.</h2>
+    <p class="t body" style="left:1180px;top:1436px;width:620px;">Use one, use all three. The difference is that the warehouse, the trucks and the carriers all report into the same place, so you are never stitching together three sets of numbers.</p>
+    <div class="sh card r20" style="left:120px;top:1576px;width:520px;height:480px;"></div>
+    <div class="sh photo2" style="left:120px;top:1576px;width:520px;height:220px;"></div>
+    <div class="sh grid" style="left:120px;top:1576px;width:520px;height:220px;"></div>
+    <div class="sh blue" style="left:120px;top:1576px;width:6px;height:220px;"></div>
+    <p class="t statl" style="left:156px;top:1828px;width:440px;">FREIGHT MANAGEMENT</p>
+    <p class="t h3" style="left:156px;top:1862px;width:440px;">All your carriers in one place</p>
+    <p class="t small" style="left:156px;top:1956px;width:440px;">Live tracking, one reconciled invoice, weekly DIFOT and monthly financial reports across every carrier you use.</p>
+    <p class="t monob" style="left:156px;top:2056px;width:440px;"></p>
+    <div class="sh card r20" style="left:680px;top:1576px;width:520px;height:480px;"></div>
+    <div class="sh photo3" style="left:680px;top:1576px;width:520px;height:220px;"></div>
+    <div class="sh grid" style="left:680px;top:1576px;width:520px;height:220px;"></div>
+    <div class="sh lime" style="left:680px;top:1576px;width:6px;height:220px;"></div>
+    <p class="t statl" style="left:716px;top:1828px;width:440px;">TRANSPORT</p>
+    <p class="t h3" style="left:716px;top:1862px;width:440px;">Our own drivers and trucks</p>
+    <p class="t small" style="left:716px;top:1956px;width:440px;">GPS tracking, route optimisation, delivery timestamps and proof of delivery, into shopping centres and high streets.</p>
+    <p class="t monob" style="left:716px;top:2056px;width:440px;"></p>
+    <div class="sh card r20" style="left:1240px;top:1576px;width:520px;height:480px;"></div>
+    <div class="sh photo3" style="left:1240px;top:1576px;width:520px;height:220px;"></div>
+    <div class="sh grid" style="left:1240px;top:1576px;width:520px;height:220px;"></div>
+    <div class="sh orange" style="left:1240px;top:1576px;width:6px;height:220px;"></div>
+    <p class="t statl" style="left:1276px;top:1828px;width:440px;">WAREHOUSING</p>
+    <p class="t h3" style="left:1276px;top:1862px;width:440px;">30,000 m&sup2; across Australia</p>
+    <p class="t small" style="left:1276px;top:1956px;width:440px;">Pick, pack and ship from Truganina and our satellite depots, integrated straight into your ERP and WMS.</p>
+    <p class="t monob" style="left:1276px;top:2056px;width:440px;"></p>
+    <div class="sh navy" style="left:0px;top:2196px;width:1920px;height:1020px;"></div>
+    <div class="sh photo" style="left:1020px;top:2196px;width:900px;height:1020px;"></div>
+    <div class="sh grid" style="left:1020px;top:2196px;width:900px;height:1020px;"></div>
+    <p class="t eyebrow" style="left:120px;top:2296px;width:600px;">02 &nbsp;/&nbsp; THE TECHNOLOGY LAYER</p>
+    <h2 class="t h2w" style="left:120px;top:2342px;width:820px;">One connected picture. Not five different systems.</h2>
+    <p class="t leadw" style="left:120px;top:2526px;width:780px;">Warehouse, freight and transport data land in one environment. Real-time inventory, order status, freight tracking, PODs and operational reporting, all in the same place.</p>
+    <p class="t bodyw" style="left:120px;top:2666px;width:760px;">Less chasing information. More control over what is happening. Our specialists read the numbers every week and tell you what to change, not just what happened.</p>
+    <div class="sh rfull blue" style="left:120px;top:2806px;width:280px;height:62px;"></div>
+    <p class="t btn-t" style="left:120px;top:2824.0px;width:280px;">Explore the platform</p>
+    <div class="sh rfull" style="left:424px;top:2806px;width:260px;height:62px;background:transparent;border:1px solid rgba(255,255,255,.4)"></div>
+    <p class="t btn-t" style="left:424px;top:2824.0px;width:260px;">See a sample report</p>
+    <div class="sh glass r20" style="left:1120px;top:2346px;width:700px;height:720px;"></div>
+    <div class="sh hairw" style="left:1152px;top:2378px;width:636px;height:1px;"></div>
+    <p class="t statlw" style="left:1152px;top:2352px;width:300px;">CONTROL TOWER</p>
+    <p class="t monob" style="left:1640px;top:2352px;width:148px;">LIVE</p>
+    <div class="sh glassb r14" style="left:1152px;top:2410px;width:196px;height:118px;"></div>
+    <p class="t h4w" style="left:1170px;top:2432px;width:170px;">98.2%</p>
+    <p class="t statlw" style="left:1170px;top:2476px;width:170px;">DIFOT</p>
+    <div class="sh glassb r14" style="left:1364px;top:2410px;width:196px;height:118px;"></div>
+    <p class="t h4w" style="left:1382px;top:2432px;width:170px;">1,418</p>
+    <p class="t statlw" style="left:1382px;top:2476px;width:170px;">Orders today</p>
+    <div class="sh glassb r14" style="left:1576px;top:2410px;width:196px;height:118px;"></div>
+    <p class="t h4w" style="left:1594px;top:2432px;width:170px;">6</p>
+    <p class="t statlw" style="left:1594px;top:2476px;width:170px;">Open exceptions</p>
+    <div class="sh r8" style="left:1152px;top:2736px;width:34px;height:70px;background:rgba(3,173,239,0.35)"></div>
+    <div class="sh r8" style="left:1204px;top:2696px;width:34px;height:110px;background:rgba(3,173,239,0.39999999999999997)"></div>
+    <div class="sh r8" style="left:1256px;top:2656px;width:34px;height:150px;background:rgba(3,173,239,0.44999999999999996)"></div>
+    <div class="sh r8" style="left:1308px;top:2710px;width:34px;height:96px;background:rgba(3,173,239,0.5)"></div>
+    <div class="sh r8" style="left:1360px;top:2626px;width:34px;height:180px;background:rgba(3,173,239,0.55)"></div>
+    <div class="sh r8" style="left:1412px;top:2674px;width:34px;height:132px;background:rgba(3,173,239,0.6)"></div>
+    <div class="sh r8" style="left:1464px;top:2596px;width:34px;height:210px;background:rgba(3,173,239,0.35)"></div>
+    <div class="sh r8" style="left:1516px;top:2646px;width:34px;height:160px;background:rgba(3,173,239,0.39999999999999997)"></div>
+    <div class="sh r8" style="left:1568px;top:2682px;width:34px;height:124px;background:rgba(3,173,239,0.44999999999999996)"></div>
+    <div class="sh r8" style="left:1620px;top:2610px;width:34px;height:196px;background:rgba(3,173,239,0.5)"></div>
+    <div class="sh r8" style="left:1672px;top:2664px;width:34px;height:142px;background:rgba(3,173,239,0.55)"></div>
+    <div class="sh r8" style="left:1724px;top:2628px;width:34px;height:178px;background:rgba(3,173,239,0.6)"></div>
+    <div class="sh hairw" style="left:1152px;top:2806px;width:636px;height:1px;"></div>
+    <p class="t statlw" style="left:1152px;top:2562px;width:400px;">FREIGHT SPEND BY CARRIER</p>
+    <p class="t monow" style="left:1152px;top:2822px;width:400px;">MON &nbsp; TUE &nbsp; WED &nbsp; THU &nbsp; FRI &nbsp; SAT</p>
+    <div class="sh r8" style="left:1152px;top:2886px;width:636px;height:30px;background:rgba(255,255,255,.06)"></div>
+    <div class="sh rfull" style="left:1164px;top:2896px;width:10px;height:10px;background:#C0D145"></div>
+    <div class="sh r8" style="left:1152px;top:2928px;width:636px;height:30px;background:rgba(255,255,255,.06)"></div>
+    <div class="sh rfull" style="left:1164px;top:2938px;width:10px;height:10px;background:#C0D145"></div>
+    <div class="sh r8" style="left:1152px;top:2970px;width:636px;height:30px;background:rgba(255,255,255,.06)"></div>
+    <div class="sh rfull" style="left:1164px;top:2980px;width:10px;height:10px;background:#F5851F"></div>
+    <div class="sh r8" style="left:1152px;top:3012px;width:636px;height:30px;background:rgba(255,255,255,.06)"></div>
+    <div class="sh rfull" style="left:1164px;top:3022px;width:10px;height:10px;background:#03ADEF"></div>
+    <p class="t monow" style="left:1188px;top:2894px;width:160px;">CN-48201</p>
+    <p class="t monow" style="left:1370px;top:2894px;width:160px;">Delivered</p>
+    <p class="t monow" style="left:1570px;top:2894px;width:180px;">Tamworth</p>
+    <p class="t monow" style="left:1188px;top:2936px;width:160px;">CN-48219</p>
+    <p class="t monow" style="left:1370px;top:2936px;width:160px;">Delivered</p>
+    <p class="t monow" style="left:1570px;top:2936px;width:180px;">Bendigo</p>
+    <p class="t monow" style="left:1188px;top:2978px;width:160px;">CN-48224</p>
+    <p class="t monow" style="left:1370px;top:2978px;width:160px;">At risk</p>
+    <p class="t monow" style="left:1570px;top:2978px;width:180px;">Geelong</p>
+    <p class="t monow" style="left:1188px;top:3020px;width:160px;">CN-48230</p>
+    <p class="t monow" style="left:1370px;top:3020px;width:160px;">In transit</p>
+    <p class="t monow" style="left:1570px;top:3020px;width:180px;">Sydney</p>
+    <div class="sh white" style="left:0px;top:3216px;width:1920px;height:920px;"></div>
+    <p class="t eyebrow-d" style="left:120px;top:3308px;width:600px;">03 &nbsp;/&nbsp; WHAT THE PLATFORM DOES</p>
+    <h2 class="t h2" style="left:120px;top:3348px;width:1000px;">Execution you can watch, not wait for.</h2>
+    <p class="t body" style="left:1180px;top:3362px;width:620px;">Every capability below is already running on live client accounts today. Nothing here is a roadmap item.</p>
+    <div class="sh cardp r20" style="left:120px;top:3516px;width:520px;height:240px;"></div>
+    <div class="sh blue" style="left:120px;top:3516px;width:520px;height:4px;"></div>
+    <p class="t num" style="left:152px;top:3550px;width:100px;">01</p>
+    <p class="t h4" style="left:152px;top:3588px;width:440px;">Live order and consignment tracking</p>
+    <p class="t small" style="left:152px;top:3658px;width:450px;">Every carrier, every stage, in one dashboard. Status, location and predicted ETA.</p>
+    <div class="sh cardp r20" style="left:680px;top:3516px;width:520px;height:240px;"></div>
+    <div class="sh blue" style="left:680px;top:3516px;width:520px;height:4px;"></div>
+    <p class="t num" style="left:712px;top:3550px;width:100px;">02</p>
+    <p class="t h4" style="left:712px;top:3588px;width:440px;">Alerts and exception management</p>
+    <p class="t small" style="left:712px;top:3658px;width:450px;">SMS and email the moment a delivery falls outside tolerance. A case is opened before the customer calls.</p>
+    <div class="sh cardp r20" style="left:1240px;top:3516px;width:520px;height:240px;"></div>
+    <div class="sh blue" style="left:1240px;top:3516px;width:520px;height:4px;"></div>
+    <p class="t num" style="left:1272px;top:3550px;width:100px;">03</p>
+    <p class="t h4" style="left:1272px;top:3588px;width:440px;">DIFOT dashboards</p>
+    <p class="t small" style="left:1272px;top:3658px;width:450px;">Delivered in full, on time. Broken down by carrier, by lane and by store, weekly.</p>
+    <div class="sh cardp r20" style="left:120px;top:3796px;width:520px;height:240px;"></div>
+    <div class="sh blue" style="left:120px;top:3796px;width:520px;height:4px;"></div>
+    <p class="t num" style="left:152px;top:3830px;width:100px;">04</p>
+    <p class="t h4" style="left:152px;top:3868px;width:440px;">One reconciled invoice</p>
+    <p class="t small" style="left:152px;top:3938px;width:450px;">Every carrier consolidated into a single invoice, checked line by line against the rate card.</p>
+    <div class="sh cardp r20" style="left:680px;top:3796px;width:520px;height:240px;"></div>
+    <div class="sh blue" style="left:680px;top:3796px;width:520px;height:4px;"></div>
+    <p class="t num" style="left:712px;top:3830px;width:100px;">05</p>
+    <p class="t h4" style="left:712px;top:3868px;width:440px;">Cost to serve analysis</p>
+    <p class="t small" style="left:712px;top:3938px;width:450px;">What freight actually costs per store, per service and per lane, so you can price it properly.</p>
+    <div class="sh cardp r20" style="left:1240px;top:3796px;width:520px;height:240px;"></div>
+    <div class="sh blue" style="left:1240px;top:3796px;width:520px;height:4px;"></div>
+    <p class="t num" style="left:1272px;top:3830px;width:100px;">06</p>
+    <p class="t h4" style="left:1272px;top:3868px;width:440px;">Tier-one ERP and WMS integration</p>
+    <p class="t small" style="left:1272px;top:3938px;width:450px;">Real integration with your systems. Not a nightly spreadsheet export.</p>
+    <div class="sh paper" style="left:0px;top:4136px;width:1920px;height:860px;"></div>
+    <div class="sh photo2 r20" style="left:120px;top:4256px;width:840px;height:620px;"></div>
+    <div class="sh grid" style="left:120px;top:4256px;width:840px;height:620px;"></div>
+    <div class="sh glass r14" style="left:700px;top:4692px;width:380px;height:184px;"></div>
+    <p class="t statlw" style="left:736px;top:4728px;width:300px;">WEEKLY REPORT</p>
+    <p class="t h3" style="left:736px;top:4762px;width:320px;color:#fff;font-size:28px">Sent Monday, 7am</p>
+    <p class="t monow" style="left:736px;top:4806px;width:320px;">DIFOT, spend, exceptions</p>
+    <p class="t eyebrow-d" style="left:1020px;top:4256px;width:600px;">04 &nbsp;/&nbsp; BUSINESS INTELLIGENCE</p>
+    <h2 class="t h2" style="left:1020px;top:4298px;width:800px;">Business intelligence that actually means business.</h2>
+    <p class="t body" style="left:1020px;top:4466px;width:760px;">There is a difference between having data and knowing what to do with it. Your report might tell you deliveries were late, freight cost went up, or orders took longer to leave the dock. It should also tell you why.</p>
+    <p class="t statl" style="left:1020px;top:4586px;width:400px;">QUESTIONS WE ANSWER EVERY MONTH</p>
+    <div class="sh rfull blue" style="left:1020px;top:4628px;width:8px;height:8px;"></div>
+    <p class="t body" style="left:1052px;top:4622px;width:740px;">Which carrier was late most this month, and on which lanes</p>
+    <div class="sh rfull blue" style="left:1020px;top:4682px;width:8px;height:8px;"></div>
+    <p class="t body" style="left:1052px;top:4676px;width:740px;">What freight costs to serve each store in your network</p>
+    <div class="sh rfull blue" style="left:1020px;top:4736px;width:8px;height:8px;"></div>
+    <p class="t body" style="left:1052px;top:4730px;width:740px;">How many orders left the warehouse inside 24 hours</p>
+    <div class="sh rfull blue" style="left:1020px;top:4790px;width:8px;height:8px;"></div>
+    <p class="t body" style="left:1052px;top:4784px;width:740px;">Where picking and dispatch delays are actually happening</p>
+    <div class="sh white" style="left:0px;top:4996px;width:1920px;height:760px;"></div>
+    <p class="t eyebrow-d" style="left:120px;top:5084px;width:600px;">05 &nbsp;/&nbsp; INDUSTRIES</p>
+    <h2 class="t h2" style="left:120px;top:5124px;width:900px;">Same platform. Different playbook.</h2>
+    <div class="sh photo2" style="left:120px;top:5276px;width:520px;height:360px;"></div>
+    <div class="sh grid" style="left:120px;top:5276px;width:520px;height:360px;"></div>
+    <div class="sh r20" style="left:120px;top:5276px;width:520px;height:360px;background:linear-gradient(180deg,rgba(18,34,53,0) 30%,rgba(18,34,53,.85) 100%)"></div>
+    <p class="t statl" style="left:152px;top:5494px;width:440px;color:#03ADEF">RETAIL</p>
+    <p class="t smallw" style="left:152px;top:5526px;width:450px;">Store-to-store, DC-to-store and DFO rollouts into every major shopping centre in Australia, with in-store presence your team can rely on.</p>
+    <div class="sh photo3" style="left:680px;top:5276px;width:520px;height:360px;"></div>
+    <div class="sh grid" style="left:680px;top:5276px;width:520px;height:360px;"></div>
+    <div class="sh r20" style="left:680px;top:5276px;width:520px;height:360px;background:linear-gradient(180deg,rgba(18,34,53,0) 30%,rgba(18,34,53,.85) 100%)"></div>
+    <p class="t statl" style="left:712px;top:5494px;width:440px;color:#03ADEF">FMCG</p>
+    <p class="t smallw" style="left:712px;top:5526px;width:450px;">High-velocity pick, pack and despatch with real-time inventory and 24 hour order processing for homewares and electrical.</p>
+    <div class="sh photo2" style="left:1240px;top:5276px;width:520px;height:360px;"></div>
+    <div class="sh grid" style="left:1240px;top:5276px;width:520px;height:360px;"></div>
+    <div class="sh r20" style="left:1240px;top:5276px;width:520px;height:360px;background:linear-gradient(180deg,rgba(18,34,53,0) 30%,rgba(18,34,53,.85) 100%)"></div>
+    <p class="t statl" style="left:1272px;top:5494px;width:440px;color:#03ADEF">LIGHT INDUSTRIAL</p>
+    <p class="t smallw" style="left:1272px;top:5526px;width:450px;">Scalable storage and freight for construction, mining and energy, with cloud inventory and analysis in one environment.</p>
+    <div class="sh navy" style="left:0px;top:5756px;width:1920px;height:780px;"></div>
+    <p class="t eyebrow" style="left:120px;top:5848px;width:900px;">06 &nbsp;/&nbsp; PROOF</p>
+    <h2 class="t h2w" style="left:120px;top:5890px;width:1100px;">What clients say about the people and the data.</h2>
+    <div class="sh glass r20" style="left:120px;top:6056px;width:520px;height:380px;"></div>
+    <div class="sh blue" style="left:120px;top:6056px;width:4px;height:380px;"></div>
+    <p class="t quotew" style="left:156px;top:6092px;width:440px;">&ldquo;All of our data in a single location&rdquo;</p>
+    <p class="t smallw" style="left:156px;top:6208px;width:440px;">We were using several national transport companies, multiple despatch systems, multiple account managers and invoices. Now we have weekly DIFOTs and monthly financial reports in one place.</p>
+    <p class="t monow" style="left:156px;top:6366px;width:300px;">National supply manager</p>
+    <p class="t statlw" style="left:156px;top:6392px;width:300px;color:#C0D145">250+ STORES</p>
+    <div class="sh glass r20" style="left:680px;top:6056px;width:520px;height:380px;"></div>
+    <div class="sh blue" style="left:680px;top:6056px;width:4px;height:380px;"></div>
+    <p class="t quotew" style="left:716px;top:6092px;width:440px;">&ldquo;Processing all orders within 24 hours&rdquo;</p>
+    <p class="t smallw" style="left:716px;top:6208px;width:440px;">Our previous 3PL could not meet our service standards across all brands. We monitor order status through elite&rsquo;s daily performance report. The reports capture exactly what we want to see.</p>
+    <p class="t monow" style="left:716px;top:6366px;width:300px;">CEO</p>
+    <p class="t statlw" style="left:716px;top:6392px;width:300px;color:#C0D145">MAJOR RETAILER</p>
+    <div class="sh glass r20" style="left:1240px;top:6056px;width:520px;height:380px;"></div>
+    <div class="sh blue" style="left:1240px;top:6056px;width:4px;height:380px;"></div>
+    <p class="t quotew" style="left:1276px;top:6092px;width:440px;">&ldquo;Delivered on time in the weeks before Christmas&rdquo;</p>
+    <p class="t smallw" style="left:1276px;top:6208px;width:440px;">A major seasonal injection into 50 stores across four cities. Their communication on rollout progress and in-store manners was impeccable.</p>
+    <p class="t monow" style="left:1276px;top:6366px;width:300px;">Supply chain manager</p>
+    <p class="t statlw" style="left:1276px;top:6392px;width:300px;color:#C0D145">50-STORE ROLLOUT</p>
+    <div class="sh paper" style="left:0px;top:6536px;width:1920px;height:560px;"></div>
+    <p class="t eyebrow-d" style="left:120px;top:6636px;width:600px;">07 &nbsp;/&nbsp; ABOUT ELITE</p>
+    <h2 class="t h2" style="left:120px;top:6678px;width:1000px;">People who pick up the phone. Systems that prove the result.</h2>
+    <p class="t body" style="left:1180px;top:6682px;width:620px;">We are a freight, transport and warehousing team with our own drivers, our own warehouses and a data platform behind all of it. You get people who know your account by name, and the numbers to show how your freight is actually going.</p>
+    <p class="t body" style="left:1180px;top:6866px;width:620px;">Every order is tracked, every delivery is timed, and every report lands on schedule.</p>
+    <div class="sh rfull" style="left:1180px;top:6956px;width:220px;height:62px;background:transparent;border:1px solid #C7D0DB"></div>
+    <p class="t btn-td" style="left:1180px;top:6974.0px;width:220px;">About elite</p>
+    <div class="sh navy" style="left:0px;top:7096px;width:1920px;height:470px;"></div>
+    <div class="sh photo2" style="left:1240px;top:7096px;width:680px;height:470px;"></div>
+    <div class="sh grid" style="left:1240px;top:7096px;width:680px;height:470px;"></div>
+    <div class="sh blue" style="left:1240px;top:7096px;width:10px;height:470px;"></div>
+    <p class="t eyebrow" style="left:120px;top:7174px;width:900px;">GET STARTED</p>
+    <h2 class="t h2w" style="left:120px;top:7216px;width:940px;">Your data should be working harder than you are.</h2>
+    <p class="t bodyw" style="left:120px;top:7364px;width:900px;">If your reporting only tells you what happened yesterday, it is time to expect more. Let us map your current operation and show you what live looks like.</p>
+    <div class="sh rfull blue" style="left:120px;top:7464px;width:300px;height:62px;"></div>
+    <p class="t btn-t" style="left:120px;top:7482.0px;width:300px;">Book a discovery call</p>
+    <div class="sh rfull" style="left:444px;top:7464px;width:250px;height:62px;background:transparent;border:1px solid rgba(255,255,255,.4)"></div>
+    <p class="t btn-t" style="left:444px;top:7482.0px;width:250px;">Call 1300 652 157</p>
+    <div class="sh navy2" style="left:0px;top:7566px;width:1920px;height:440px;"></div>
+    <div class="sh hairw" style="left:0px;top:7566px;width:1920px;height:1px;"></div>
+    <p class="t logo" style="left:120px;top:7638px;width:400px;">elite <span style="color:#03ADEF">logistics</span> australia</p>
+    <p class="t smallw" style="left:120px;top:7690px;width:420px;">Freight management, transport and warehousing, run on one platform. Melbourne, Sydney, Brisbane, Adelaide, Perth.</p>
+    <p class="t footh" style="left:760px;top:7640px;width:240px;">SERVICES</p>
+    <p class="t foot" style="left:760px;top:7676px;width:240px;">Freight Management<br>Transport<br>Retail Transport<br>3PL Warehousing</p>
+    <p class="t footh" style="left:1040px;top:7640px;width:240px;">TECHNOLOGY</p>
+    <p class="t foot" style="left:1040px;top:7676px;width:240px;">Platform overview<br>Visibility and tracking<br>Business intelligence<br>Integrations<br>WMS and FMS</p>
+    <p class="t footh" style="left:1320px;top:7640px;width:240px;">INDUSTRIES</p>
+    <p class="t foot" style="left:1320px;top:7676px;width:240px;">Retail<br>FMCG<br>Light Industries</p>
+    <p class="t footh" style="left:1600px;top:7640px;width:240px;">COMPANY</p>
+    <p class="t foot" style="left:1600px;top:7676px;width:240px;">About us<br>Meet the team<br>Case studies<br>News<br>FAQs<br>Contact</p>
+    <div class="sh hairw" style="left:120px;top:7922px;width:1680px;height:1px;"></div>
+    <p class="t smallw" style="left:120px;top:7950px;width:700px;">Elite Logistics Australia &copy; 2026. All rights reserved.</p>
+    <p class="t smallw" style="left:1300px;top:7950px;width:500px;text-align:right">1300 652 157 &nbsp;&nbsp;·&nbsp;&nbsp; support@elitelogisticsaus.com.au</p>
+  </section>
+</body>
+</html>
