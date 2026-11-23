@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>elite logistics australia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1C3147;--blue:#03ADEF;--lime:#C0D145;--paper:#F8F9FF;--body:#4C5866;--grey:#EDF1F6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#2b2b2b;display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px 0;
+     font-family:'Roboto',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.screen{width:1920px;flex:0 0 auto;background:#fff;overflow:hidden}
+.wrap{width:1640px;margin:0 auto}
+img{display:block;border:0}
+
+/* nav */
+.nav{height:104px;background:#fff;display:flex;align-items:center}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.nav img{height:52px;width:auto}
+.menu{display:flex;align-items:center;gap:34px}
+.menu a{font-family:'Open Sans',sans-serif;font-size:18px;font-weight:700;color:var(--navy);text-decoration:none}
+.menu a.on{color:var(--blue)}
+.navbtns{display:flex;gap:14px}
+.btn{display:inline-block;font-family:'Open Sans',sans-serif;font-size:17px;font-weight:700;
+     padding:14px 30px;text-decoration:none}
+.btn-grey{background:var(--grey);color:var(--navy)}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-white{background:#fff;color:var(--navy)}
+
+/* hero home */
+.hero{position:relative;height:860px;background-size:cover;background-position:center}
+.hero .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,26,40,.78) 0%,rgba(14,26,40,.52) 45%,rgba(14,26,40,.12) 100%)}
+.hero .inner{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-family:'Open Sans',sans-serif;font-size:76px;line-height:1.12;font-weight:700;color:#fff;max-width:1100px}
+.hero h2{font-family:'Open Sans',sans-serif;font-size:76px;line-height:1.12;font-weight:700;color:var(--blue);max-width:1100px;margin-bottom:36px}
+.hero p{font-size:24px;line-height:1.6;color:#E6EBF0;max-width:760px;margin-bottom:40px}
+.hero .cta{display:flex;gap:16px}
+
+/* client band */
+.clients{background:var(--blue);height:150px;display:flex;align-items:center}
+.clients .wrap{display:flex;align-items:center;justify-content:space-between}
+.clients img{height:40px;width:auto;filter:brightness(0) invert(1);opacity:.92}
+
+/* section basics */
+.sec{padding:110px 0}
+.sec.paper{background:var(--paper)}
+.sec.navy{background:var(--navy)}
+.center{text-align:center}
+h2.sh{font-family:'Open Sans',sans-serif;font-size:46px;font-weight:700;color:var(--navy);line-height:1.15}
+h2.sh.w{color:#fff}
+.rule{width:56px;height:4px;background:var(--blue);margin-top:18px}
+.rule.lime{background:var(--lime)}
+.center .rule{margin-left:auto;margin-right:auto}
+p.lead{font-size:21px;line-height:1.72;color:var(--body);margin-top:26px}
+p.lead.w{color:#CBD5E0}
+.sec.navy p.lead{color:#CBD5E0}
+
+/* services 3col */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;margin-top:70px}
+.svc{text-align:center}
+.svc img.ic{height:120px;width:auto;margin:0 auto 30px}
+.svc h3{font-family:'Open Sans',sans-serif;font-size:28px;font-weight:700;color:var(--navy);margin-bottom:16px}
+.svc p{font-size:19px;line-height:1.68;color:var(--body)}
+
+/* stats */
+.stats{background:var(--navy);padding:76px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat b{display:block;font-family:'Open Sans',sans-serif;font-size:62px;font-weight:700;color:var(--blue);line-height:1}
+.stat span{display:block;font-size:18px;color:#CBD5E0;margin-top:14px}
+.stats .note{text-align:center;font-size:17px;color:#9AAABB;margin-top:54px;width:100%}
+
+/* industries cards */
+.indcards{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;margin-top:70px}
+.indcards img{width:100%;height:320px;object-fit:cover}
+.indcards h3{font-family:'Open Sans',sans-serif;font-size:28px;font-weight:700;color:#fff;margin:26px 0 14px}
+.indcards p{font-size:18px;line-height:1.66;color:#CBD5E0}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+.split.rev>div:first-child{order:2}
+.split img{width:100%;height:520px;object-fit:cover}
+.split img.contain{object-fit:contain;background:#fff;padding:40px}
+.split .tx h2.sh{margin-bottom:0}
+.split .tx .mt{margin-top:34px}
+
+/* list */
+ul.plain{list-style:none;margin-top:30px}
+ul.plain li{font-size:19px;line-height:1.5;color:var(--body);padding:13px 0}
+ul.plain li+li{background:none}
+ul.plain.w li{color:#CBD5E0}
+
+/* inner page title + hero */
+.ptitle{padding:70px 0 44px;text-align:center}
+.ptitle h1{font-family:'Open Sans',sans-serif;font-size:50px;font-weight:700;color:var(--navy)}
+.phero{position:relative;padding-bottom:120px}
+.phero .ph{width:1300px;height:620px;object-fit:cover}
+.phero .panel{position:absolute;right:0;top:360px;width:720px;background:var(--lime);padding:54px 56px}
+.phero .panel h2{font-family:'Open Sans',sans-serif;font-size:36px;font-weight:700;color:var(--navy);line-height:1.2}
+.phero .panel .rule{background:var(--navy);margin:20px 0 22px}
+.phero .panel p{font-size:19px;line-height:1.66;color:#2C3A28}
+
+/* body block */
+.tcol{max-width:1180px}
+.tcol p{font-size:20px;line-height:1.75;color:var(--body);margin-bottom:22px}
+
+/* quote band */
+.quoteband{background:var(--lime);padding:84px 0}
+.quoteband h2{font-family:'Open Sans',sans-serif;font-size:38px;font-weight:700;color:var(--navy);line-height:1.3;max-width:1180px}
+.quoteband .btn{margin-top:34px}
+
+/* testimonials */
+.tst{background:var(--paper);padding:48px 54px;margin-top:40px}
+.tst .pull{font-family:'Open Sans',sans-serif;font-size:26px;font-weight:700;color:var(--navy);margin-bottom:20px}
+.tst p{font-size:19px;line-height:1.72;color:var(--body)}
+.tst .who{margin-top:26px;font-family:'Open Sans',sans-serif;font-size:16px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.04em}
+.tst .org{font-size:15px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+
+/* contact */
+.contact{background:var(--paper);padding:110px 0}
+.form{max-width:1100px;margin:46px auto 0}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:26px}
+.fld{background:#fff;height:58px}
+.fld.ta{height:170px}
+.flabel{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:10px}
+
+/* footer */
+.foot{background:var(--navy);padding:88px 0 40px}
+.foot .cols{display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr}
+.foot h4{font-family:'Open Sans',sans-serif;font-size:21px;font-weight:700;color:#fff;margin-bottom:22px}
+.foot a,.foot p{display:block;font-size:17px;line-height:2;color:#B9C4D1;text-decoration:none}
+.foot .bar{margin-top:70px;padding-top:34px;display:flex;justify-content:space-between;align-items:center}
+.foot .bar span{font-size:16px;color:#8FA0B2}
+.foot .marks{display:flex;gap:70px}
+.foot .marks span{font-family:'Open Sans',sans-serif;font-size:18px;font-weight:700;color:#fff}
+</style>
+</head>
+<body>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="on">Home</a><a href="#" class="">About Us</a><a href="#" class="">Services</a><a href="#" class="">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="hero" style="background-image:url('https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ELA-Warehouse-Images_Opt18.jpg')"><div class="veil"></div>
+<div class="inner"><div class="wrap">
+<h1>freight, transport and warehousing.</h1>
+<h2>with data you can see.</h2>
+<p>Our own warehouses, our own drivers and a multi-carrier platform running behind both. You get people who answer the phone, and a live view of every order, every delivery and every dollar of freight spend.</p>
+<div class="cta"><a class="btn btn-blue" href="#">book a discovery call</a><a class="btn btn-white" href="#">see our technology</a></div>
+</div></div></section>
+<section class="clients"><div class="wrap"><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/temple-and-webster-1.svg" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/seed-white.svg" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/06/french-connection.png" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/betts.png" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/brands-tarocash.png" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/footlocker.png" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/brands-forevernew.png" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/yd-sm.png" alt=""><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/06/purebaby-logo.png" alt=""></div></section>
+
+<section class="sec"><div class="wrap center">
+<h2 class="sh">our services</h2><div class="rule"></div>
+<div class="cols3" style="text-align:center"><div class="svc"><img class="ic" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/Asset-6@4x-clear.svg" alt="transport"><h3>transport</h3><p>Our own drivers and trucks into shopping centres, homemaker centres and high streets, with live GPS tracking, delivery timestamps and proof of delivery on every drop.</p></div><div class="svc"><img class="ic" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/Asset-1-color-clear.svg" alt="3pl warehousing"><h3>3pl warehousing</h3><p>30,000 m&sup2; across Australia. Pick, pack and ship from Truganina and our satellite depots, integrated straight into your ERP and WMS.</p></div><div class="svc"><img class="ic" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/09/ela-logistics-icon.svg" alt="freight management"><h3>freight management</h3><p>All your carriers in one place. Live tracking, one reconciled invoice, weekly DIFOT and monthly financial reports across every carrier you use.</p></div></div>
+</div></section>
+
+<section class="stats"><div class="wrap"><div class="stat"><b>98%</b><span>on-time delivery</span></div><div class="stat"><b>100%</b><span>scanning and proof-of-delivery compliance</span></div><div class="stat"><b>20%</b><span>faster transit times</span></div><div class="stat"><b>30-40%</b><span>lift in picking efficiency</span></div></div><div class="wrap"><div class="note">Measured in elite&rsquo;s published logistics management reporting.</div></div></section>
+
+<section class="sec paper"><div class="wrap">
+<div class="split rev">
+<div><img class="contain" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/06/ela-controltower-2.png" alt=""></div>
+<div class="tx"><h2 class="sh">our technology</h2><div class="rule"></div>
+<p class="lead">Warehouse, freight and transport information land in one environment. Real-time inventory and order status, freight tracking, PODs and operational reporting, all in the same place. Less chasing information, more control over what is happening.</p>
+<p class="lead">Our specialists read the numbers every week and tell you what to change, not just what happened.</p>
+<div class="mt"><a class="btn btn-blue" href="#">learn more</a></div>
+</div></div></div></section>
+
+<section class="sec navy"><div class="wrap center">
+<h2 class="sh w">our industries</h2><div class="rule"></div>
+<div class="indcards" style="text-align:left"><div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/Shopping-centre-elite.jpg" alt=""><h3>retail</h3><p>Store-to-store, DC-to-store and DFO rollouts into every major shopping centre in Australia, with real-time inventory and daily rollout reporting.</p></div><div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-06.jpg" alt=""><h3>fmcg</h3><p>Optimised pick and pack with 24 hour order processing for homewares, electrical and fast-moving consumer goods.</p></div><div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-07.jpg" alt=""><h3>light industries</h3><p>Scalable storage and freight for construction, mining and energy, with cloud inventory and data analysis in one environment.</p></div></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-drone-7.jpg" alt=""></div>
+<div class="tx"><h2 class="sh">about us</h2><div class="rule"></div>
+<p class="lead">We are a freight, transport and warehousing team with our own drivers, our own warehouses and a data platform behind all of it. You get people who know your account by name, and the numbers to show how your freight is actually going.</p>
+<p class="lead">Every order is tracked, every delivery is timed, and every report lands on schedule.</p>
+<div class="mt"><a class="btn btn-blue" href="#">learn more</a></div>
+</div></div></div></section>
+
+<section class="sec paper"><div class="wrap center">
+<h2 class="sh">our testimonials</h2><div class="rule"></div>
+<div style="text-align:left;max-width:1400px;margin:0 auto"><div class="tst"><div class="pull">All of our data in a single location</div><p>&ldquo;We were using several national transport companies, multiple despatch systems, multiple account managers, invoices and procedures. It was costing us hundreds of thousands. elite completed an in-depth analysis of our domestic footprint and helped us understand our cost of freight to service our store network. Now we have all of our data in a single location, with weekly DIFOTs and monthly financial reports.&rdquo;</p><div class="who">National supply manager</div><div class="org">250+ stores</div></div><div class="tst"><div class="pull">Processing all orders within 24 hours</div><p>&ldquo;Our previous 3PL provider was unable to meet our service standards across all of our brands. elite are now servicing all of them and processing all orders within 24 hours. We monitor our order status through elite&rsquo;s daily performance report. The reports are transparent and capture exactly what we want to see.&rdquo;</p><div class="who">CEO</div><div class="org">Major retailer</div></div><div class="tst"><div class="pull">Delivered on time in the weeks before Christmas</div><p>&ldquo;We contracted elite to roll out a major retail injection of seasonal stock into our 50 stores across four major cities. They went about delivering on their promise of delivery on time to our stores in the weeks leading up to Christmas. Their communication on rollout progress and in-store manners was impeccable.&rdquo;</p><div class="who">Supply chain manager</div><div class="org">Retail</div></div></div>
+</div></section>
+
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="">About Us</a><a href="#" class="on">Services</a><a href="#" class="">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>services</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-04.jpg" alt="">
+<div class="panel"><h2>freight management, transport and warehousing.</h2><div class="rule"></div><p>Use one service or all three. What does not change is the platform underneath: one place for tracking, exceptions, reporting and cost.</p></div>
+</div></section>
+<section style="padding:0 0 100px"><div class="wrap"><div class="tcol"><p>elite logistics australia delivers end-to-end contract logistics: an in-house transport fleet, a Melbourne-based 3PL warehouse network and a multi-carrier freight desk. All three report into the same platform, so an order picked in our warehouse, loaded on our truck and handed to a carrier stays as a single record the whole way.</p><p>You are never reconciling three systems to answer one question. Read about the three services below.</p></div></div></section>
+<section class="sec paper"><div class="wrap center">
+<h2 class="sh">our 3pl logistics services</h2><div class="rule"></div>
+<div class="cols3" style="text-align:center">
+<div class="svc"><img class="ic" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/Asset-6@4x-clear.svg" alt="transport"><h3>transport</h3><p>Our own drivers and trucks, with live GPS tracking, route optimisation, delivery timestamps and proof of delivery on every consignment.</p></div>
+<div class="svc"><img class="ic" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/Asset-1-color-clear.svg" alt="warehousing"><h3>3pl warehousing</h3><p>Track your inventory at all times with scalable warehouse solutions, tier-one WMS and full ERP integration.</p></div>
+<div class="svc"><img class="ic" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/09/ela-logistics-icon.svg" alt="freight management"><h3>freight management</h3><p>Every carrier in one portal, with weekly DIFOT, monthly reporting and one reconciled invoice.</p></div>
+</div></div></section>
+<section class="stats"><div class="wrap"><div class="stat"><b>98%</b><span>on-time delivery</span></div><div class="stat"><b>100%</b><span>proof-of-delivery compliance</span></div><div class="stat"><b>20%</b><span>faster transit times</span></div><div class="stat"><b>24h</b><span>order processing</span></div></div><div class="wrap"></div></section>
+<section class="quoteband"><div class="wrap"><h2>Tell us what your network looks like today and we will map which of the three fits, and what the data would show you from week one.</h2><a class="btn btn-navy" href="#">request a quote</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="">About Us</a><a href="#" class="on">Services</a><a href="#" class="">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>transport</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2024/05/ELA-Warehouse-Images_Re-Edited-High-Res-7-scaled.jpg" alt="">
+<div class="panel"><h2>our own drivers. live data on every drop.</h2><div class="rule"></div><p>Our in-house fleet delivers into shopping centres, homemaker centres and high streets. You see where every order is, and the timestamp of when it landed.</p></div>
+</div></section>
+<section style="padding:0 0 100px"><div class="wrap"><div class="tcol"><p>Our transport operations are supported by freight management technology, delivery tracking and performance reporting, giving your team the information to monitor shipments, flag issues early and keep stores informed.</p><ul class="plain"><li>Live GPS tracking with predicted ETA on every consignment</li><li>Delivery timestamps and photo proof of delivery</li><li>SMS and email alerts to your stores and your team</li><li>DIFOT dashboard by driver, route and destination</li><li>Monthly financial and operational reporting</li><li>Visible on Android and iOS, not just a desktop portal</li></ul></div></div></section>
+<section class="sec navy"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-019.jpg" alt=""></div>
+<div class="tx"><h2 class="sh w">an in-house fleet, not a broker list.</h2><div class="rule lime"></div><p class="lead w">Our drivers wear our uniform and know your stores. Retailers tell us the same thing: helpful and courteous to store team members, always going the extra mile. That matters in a shopping centre at 6am.</p><p class="lead w">Our exclusive fleet services all major shopping centres, homemaker centres and high streets, with in-house drivers who plan around your delivery windows rather than asking you to work around theirs.</p></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<div class="split rev">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2024/05/ela-warehouse-013.jpeg" alt=""></div>
+<div class="tx"><h2 class="sh">route planning built on live data.</h2><div class="rule blue"></div><p class="lead">We optimise routes using real-time data from our logistics platform, so your freight takes the most efficient path and your team can see the plan before the truck leaves.</p><p class="lead">Timeslots are booked, met or missed and logged against every DC delivery, so the record exists whether the day went well or not.</p></div>
+</div></div></section>
+<section class="quoteband"><div class="wrap"><h2>Give us a week of your delivery data and we will show you what live tracking, timestamps and a DIFOT dashboard would have told you.</h2><a class="btn btn-navy" href="#">request a quote</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="">About Us</a><a href="#" class="on">Services</a><a href="#" class="">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>freight management</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/services-logistics.jpg" alt="">
+<div class="panel"><h2>freight management that shows you everything.</h2><div class="rule"></div><p>We manage your carriers, your bookings and your reports. You see all of it in one portal, B2B and B2C, with one reconciled invoice at the end of the month.</p></div>
+</div></section>
+<section style="padding:0 0 100px"><div class="wrap"><div class="tcol"><p>We are partnered with the major freight and transport companies in Australia and manage all enquiries on your behalf as part of an end-to-end freight management service. Our online portal shows the movements of both B2B and B2C deliveries, from every carrier, in a single environment.</p><p>Some of the work we take off your team:</p><ul class="plain"><li>Choosing and managing carriers, aligned to your KPIs</li><li>Booking and despatch on one multi-carrier platform</li><li>Consignment tracking, proof of delivery and enquiry management</li><li>Carrier enquiry handling, so your team sees the outcome rather than the phone calls</li><li>One consolidated, reconciled invoice checked against the rate card</li><li>Timeslot monitoring on every DC delivery</li></ul></div></div></section>
+<section class="sec navy"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-012-1.jpg" alt=""></div>
+<div class="tx"><h2 class="sh w">what you get back.</h2><div class="rule lime"></div><p class="lead w">Reporting lands whether you ask for it or not. Weekly DIFOT by carrier, lane and destination. Monthly operational and financial reports. Annual benchmarking against the market. One portal covering every carrier you use.</p><ul class="plain w"><li>Weekly DIFOT reporting</li><li>Monthly operational and financial reports</li><li>Annual benchmarking analysis</li><li>One portal for every carrier</li></ul></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<h2 class="sh">how it works</h2><div class="rule"></div>
+<div class="cols3" style="margin-top:60px">
+<div><h3 style="font-family:'Open Sans',sans-serif;font-size:24px;font-weight:700;color:#1C3147;margin-bottom:14px">we study your current freight</h3><p style="font-size:19px;line-height:1.66;color:#4C5866">Every lane, every carrier, every invoice line. We work out what it actually costs to serve each store.</p></div>
+<div><h3 style="font-family:'Open Sans',sans-serif;font-size:24px;font-weight:700;color:#1C3147;margin-bottom:14px">we help you pick the right carriers</h3><p style="font-size:19px;line-height:1.66;color:#4C5866">Top-tier carriers chosen against your KPIs. You keep the relationships if you want them.</p></div>
+<div><h3 style="font-family:'Open Sans',sans-serif;font-size:24px;font-weight:700;color:#1C3147;margin-bottom:14px">we put your data in one place</h3><p style="font-size:19px;line-height:1.66;color:#4C5866">Bookings, tracking, PODs and invoices move onto one platform, with your ERP connected.</p></div>
+</div></div></section>
+<section class="sec paper"><div class="wrap">
+<h2 class="sh">250+ store network</h2><div class="rule"></div>
+<p class="lead" style="max-width:1300px">&ldquo;We were using several national transport companies, multiple despatch systems and had multiple account managers, invoices and procedures. It was costing us hundreds of thousands. Collectively we chose several top-tier carriers to service our 250+ store network. Now we have all of our data in a single location, in addition to weekly DIFOTs and monthly financial reports.&rdquo;</p>
+<div class="who" style="margin-top:26px;font-family:'Open Sans',sans-serif;font-size:16px;font-weight:700;color:#03ADEF;text-transform:uppercase;letter-spacing:.04em">National supply manager</div>
+</div></section>
+<section class="quoteband"><div class="wrap"><h2>Send us three months of freight invoices and we will show you what is hiding in them.</h2><a class="btn btn-navy" href="#">request a quote</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="">About Us</a><a href="#" class="on">Services</a><a href="#" class="">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>3pl warehousing</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-drone-6.jpg" alt="">
+<div class="panel"><h2>30,000 m&sup2;, wired into the same platform.</h2><div class="rule"></div><p>Pick, pack and ship from Truganina and our satellite depots, with tier-one WMS, full ERP integration and real-time inventory you can see from anywhere.</p></div>
+</div></section>
+<section style="padding:0 0 100px"><div class="wrap"><div class="tcol"><p>The racking is the easy part. Orders go straight into our own transport and freight platform, so you see the whole trip in one place. Stock, pick, pack, despatch and delivery all read from the same record.</p><ul class="plain"><li>Complete tier-one ERP and WMS integration</li><li>Real-time inventory and stock accuracy monitoring</li><li>Freight management integration with every carrier you use</li><li>Business intelligence and reporting on warehouse performance</li><li>Fully monitored with CCTV and alarm systems</li></ul></div></div></section>
+<section class="sec navy"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ELA-Drone-Images_High-Res-3.jpg" alt=""></div>
+<div class="tx"><h2 class="sh w">one warehouse, endless possibilities.</h2><div class="rule lime"></div><p class="lead w">Our secure 3PL warehouse is based in Truganina, Victoria, close to the Ring Road, West Gate, wharf and airport, so product can get onto road, water or tarmac as soon as it is required. Satellite depots in Adelaide, Brisbane and Perth extend the same systems nationally.</p><ul class="plain w"><li>Expansive warehouses over 30,000 m&sup2; Australia wide</li><li>Main DC 23,500 m&sup2; of racked and hardstand space</li><li>12,000 pallet capacity and six rear-loading container docks</li><li>Second DC 6,500 m&sup2;, plus satellite depots in three states</li></ul></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<h2 class="sh">solutions we offer</h2><div class="rule"></div>
+<div class="cols3" style="margin-top:50px">
+<ul class="plain"><li>Scalable pick and packing</li><li>E-commerce product fulfilment</li><li>Load containers</li><li>De-stuffing and cross-docking</li></ul>
+<ul class="plain"><li>Inventory management</li><li>Labelling and slip sheeting</li><li>Product re-working</li><li>Returns management</li></ul>
+<ul class="plain"><li>Quality control and stocktaking</li><li>Barcoding, tagging and garment hanging</li><li>Account management</li><li>B2B, B2C and omnichannel</li></ul>
+</div></div></section>
+<section class="quoteband"><div class="wrap"><h2>Tell us your SKU count, order profile and peak, and we will model the space, the labour and the reporting.</h2><a class="btn btn-navy" href="#">request a quote</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="">About Us</a><a href="#" class="">Services</a><a href="#" class="">Industries</a><a href="#" class="on">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>our technology</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/tech-fms.jpg" alt="">
+<div class="panel"><h2>your data is lying to you.</h2><div class="rule"></div><p>Not because the numbers are wrong. Because they are only telling you half the story. Knowing something went wrong is one thing. Having the intelligence to understand it, and improve it, is another.</p></div>
+</div></section>
+<section style="padding:0 0 100px"><div class="wrap"><div class="tcol"><p>Your latest report might tell you deliveries were late, freight costs increased or orders took longer to despatch. But does it tell you why? Was it a picking delay? An inefficient route? A carrier issue? A breakdown between systems?</p><p>Our technology brings warehouse, freight and transport information together, giving you one connected picture instead of five different systems. From real-time inventory and order status through to freight tracking, PODs and operational reporting, the information is there when it is needed.</p></div></div></section>
+<section class="sec navy"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/06/ela-controltower-2.png" alt=""></div>
+<div class="tx"><h2 class="sh w">see everything. miss nothing.</h2><div class="rule lime"></div><p class="lead w">Real-time consignment tracking across every carrier from a single dashboard. Status updates, location data and predicted ETA in one view, with event-level detail on every scan, pickup and delivery attempt.</p><ul class="plain w"><li>Multi-carrier tracking consolidated into one screen</li><li>Live GPS driver and order tracking with mapping</li><li>Automated status polling and full event logging</li><li>Customer notification triggers by SMS and email</li></ul></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<div class="split rev">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/06/ela-fms.jpg" alt=""></div>
+<div class="tx"><h2 class="sh">business intelligence that actually means business.</h2><div class="rule blue"></div><p class="lead">There is a difference between having data and knowing what to do with it. Our specialists use our business intelligence and reporting to assess performance, identify inefficiencies and recommend improvements.</p><ul class="plain"><li>DIFOT: are deliveries arriving in full and on time?</li><li>Order processing: where are picking and despatch delays occurring?</li><li>Transit performance: which routes or services need attention?</li><li>Freight costs: where are the opportunities to improve efficiency?</li></ul></div>
+</div></div></section>
+<section class="sec paper"><div class="wrap">
+<h2 class="sh">one platform for all your carriers and your fleet</h2><div class="rule"></div>
+<div class="split" style="margin-top:56px">
+<div class="tx"><h3 style="font-family:'Open Sans',sans-serif;font-size:26px;font-weight:700;color:#1C3147;margin-bottom:8px">for shippers</h3><div class="rule"></div>
+<ul class="plain"><li>A multicarrier despatch platform</li><li>Centralisation of all freight bookings</li><li>The most economical service across multiple carriers</li><li>A centralised point for tracking, PODs and enquiries</li><li>Automated SMS and email notifications</li><li>Consolidated reconciled freight invoices</li></ul></div>
+<div class="tx"><h3 style="font-family:'Open Sans',sans-serif;font-size:26px;font-weight:700;color:#1C3147;margin-bottom:8px">for fleets</h3><div class="rule"></div>
+<ul class="plain"><li>Route planning and optimisation</li><li>Allocations management and optimisation</li><li>Order and despatch management</li><li>GPS driver and order tracking in real time</li><li>Digital dashboards covering KPIs and DIFOT</li><li>Delivery timestamps and notifications</li></ul></div>
+</div></div></section>
+<section class="stats"><div class="wrap"><div class="stat"><b>98%</b><span>on-time delivery</span></div><div class="stat"><b>100%</b><span>scanning and proof-of-delivery compliance</span></div><div class="stat"><b>20%</b><span>faster transit times</span></div><div class="stat"><b>30-40%</b><span>increase in picking efficiency</span></div></div><div class="wrap"><div class="note">Integrating your ERP with our enterprise WMS, FMS and BI platforms.</div></div></section>
+<section class="quoteband"><div class="wrap"><h2>If your reporting is only telling you what happened yesterday, it is time to expect more.</h2><a class="btn btn-navy" href="#">let&rsquo;s talk about your operation</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="">About Us</a><a href="#" class="">Services</a><a href="#" class="on">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>industries</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ELA-Website-Images_Web-4.jpg" alt="">
+<div class="panel"><h2>same platform. different playbook.</h2><div class="rule"></div><p>elite services three primary industries: retail, FMCG and light industrial. The warehouse, the fleet and the carrier network stay the same. What changes is how we run them and what we report on.</p></div>
+</div></section>
+<section class="sec"><div class="wrap">
+<div class="split rev">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ELA-Website-Images_Web-9-1.jpg" alt=""></div>
+<div class="tx"><h2 class="sh">retail</h2><div class="rule blue"></div><p class="lead">Fashion retail is the largest industry we provide solutions for and the field we built our business around. We provide 3PL warehousing and retail transport to all major shopping complexes in metropolitan Melbourne, and scale nationally for rollouts.</p><ul class="plain"><li>Store-to-store, DC-to-store and store-to-DFO delivery</li><li>RF scanning and real-time remote inventory monitoring</li><li>Barcoding, tagging, garment hanging and pre-shipment services</li><li>Seasonal injections and new store rollouts, reported daily</li></ul></div>
+</div></div></section>
+<section class="sec navy"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-06.jpg" alt=""></div>
+<div class="tx"><h2 class="sh w">fmcg</h2><div class="rule lime"></div><p class="lead w">Speed is the key factor in fast-moving consumer goods. Optimised pick-pack, algorithm-driven picking paths and 24 hour order processing, with the reporting to prove the turnaround.</p><ul class="plain w"><li>24 hour order processing on e-commerce brands</li><li>Real-time tracking from pick through to proof of delivery</li><li>High velocity despatch for homewares and electrical</li><li>Scalability through promotional and peak periods</li></ul></div>
+</div></div></section>
+<section class="sec"><div class="wrap">
+<div class="split rev">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-warehouse-07.jpg" alt=""></div>
+<div class="tx"><h2 class="sh">light industries</h2><div class="rule blue"></div><p class="lead">The light industrial sector covers construction, mining and energy. Heavier, lumpier, less predictable freight, handled with scalable storage, contract warehousing and freight management in a single environment.</p><ul class="plain"><li>Bulk storage and contract warehousing that scales</li><li>Cloud-based inventory management and data analysis</li><li>Freight management across multiple carriers and lanes</li><li>Industry specialists reviewing cost and performance</li></ul></div>
+</div></div></section>
+<section class="quoteband"><div class="wrap"><h2>Different sector, same question: what is happening to your freight right now, and what is it costing you?</h2><a class="btn btn-navy" href="#">request a quote</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+<section class="screen">
+<header class="nav"><div class="wrap">
+<img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/elitelogis-logo.svg" alt="elite logistics australia">
+<nav class="menu"><a href="#" class="">Home</a><a href="#" class="on">About Us</a><a href="#" class="">Services</a><a href="#" class="">Industries</a><a href="#" class="">Our Technology</a><a href="#" class="">Contact</a></nav>
+<div class="navbtns"><a class="btn btn-grey" href="#">Tracking</a><a class="btn btn-blue" href="#">Login</a></div>
+</div></header>
+<section class="ptitle"><div class="wrap"><h1>about us</h1></div></section>
+<section class="phero"><div class="wrap" style="position:relative">
+<img class="ph" src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/05/ela-drone-8.jpg" alt="">
+<div class="panel"><h2>more than just another number.</h2><div class="rule"></div><p>Once you partner with us you will always feel part of the elite family. Our service is ongoing, with reports sent daily, weekly, monthly and annually, so you always know how your orders are performing.</p></div>
+</div></section>
+<section style="padding:0 0 100px"><div class="wrap"><div class="tcol"><p>At elite logistics australia, our commitment and passion drive us beyond the norm to deliver a truly elite service in 3PL and 4PL logistics. We started this company to offer an alternative, cost-effective path to businesses that do not have their own logistics departments in place.</p><p>Establishing your own warehouse and the management systems behind it is a large undertaking. elite logistics australia offers all of it: freight management, transport and warehousing, using the latest in supply chain and freight management technology. Our partnerships with Australia&rsquo;s major freight companies mean you keep the flexibility to choose the most effective option for your product, with the data to prove which one that is.</p></div></div></section>
+<section class="sec navy"><div class="wrap">
+<div class="split">
+<div><img src="https://elitelogisticsaus.com.au/wp-content/uploads/2021/06/ela-controltower-2.png" alt=""></div>
+<div class="tx"><h2 class="sh w">our people are backed by systems.</h2><div class="rule lime"></div><p class="lead w">Every order is tracked. Every delivery is timed. Every report lands on schedule. That is the difference between a 3PL that tells you what happened and one that tells you what to do about it.</p><p class="lead w">We use that data to find ways for you to optimise your supply chain to be more efficient and cost-effective, rather than simply reporting on the month that has been.</p></div>
+</div></div></section>
+<section class="stats"><div class="wrap"><div class="stat"><b>98%</b><span>on-time delivery</span></div><div class="stat"><b>100%</b><span>scanning and proof-of-delivery compliance</span></div><div class="stat"><b>20%</b><span>faster transit times</span></div><div class="stat"><b>30-40%</b><span>lift in picking efficiency</span></div></div><div class="wrap"><div class="note">Recorded in elite&rsquo;s logistics management reporting, where warehouse and freight data are brought together.</div></div></section>
+<section class="quoteband"><div class="wrap"><h2>Good logistics is measured, not promised.</h2><a class="btn btn-navy" href="#">get in touch</a></div></section>
+<section class="contact"><div class="wrap center">
+<h2 class="sh">contact us / request a quote</h2><div class="rule"></div>
+<p class="lead" style="max-width:900px;margin-left:auto;margin-right:auto">To request a no-obligation quote or make a general enquiry, call <b style="color:#1C3147">1300 652 157</b>, or fill out the form below and one of our team will be in touch.</p>
+<div class="form" style="text-align:left">
+<div class="frow"><div><div class="flabel">First name</div><div class="fld"></div></div><div><div class="flabel">Last name</div><div class="fld"></div></div></div>
+<div class="frow"><div><div class="flabel">Email</div><div class="fld"></div></div><div><div class="flabel">Phone</div><div class="fld"></div></div></div>
+<div style="margin-bottom:26px"><div class="flabel">Comment</div><div class="fld ta"></div></div>
+<a class="btn btn-blue" href="#">Submit</a>
+</div></div></section>
+<footer class="foot"><div class="wrap">
+<div class="cols">
+<div><h4>services</h4><a href="#">Services</a><a href="#">Transport</a><a href="#">Retail Transport</a><a href="#">3pl Warehousing</a><a href="#">Freight Management</a></div>
+<div><h4>industries</h4><a href="#">Retail</a><a href="#">FMCG</a><a href="#">Light Industries</a></div>
+<div><h4>overview</h4><a href="#">Home</a><a href="#">About Us</a><a href="#">Services</a><a href="#">Our Technology</a><a href="#">Industries</a><a href="#">Testimonials</a><a href="#">FAQs</a><a href="#">News</a><a href="#">Case Studies</a><a href="#">Contact Us</a></div>
+<div><h4>quick contact</h4><p>1300 652 157</p><p>support@elitelogisticsaus.com.au</p>
+<h4 style="margin-top:34px">connect with us</h4><p>Facebook &nbsp; Instagram &nbsp; LinkedIn</p></div>
+</div>
+<div class="bar"><div class="marks"><span>transport</span><span>warehousing</span><span>freight management</span></div>
+<span>Elite Logistics Australia &copy; 2026. All Rights Reserved.</span></div>
+</div></footer>
+</section>
+</body>
+</html>
